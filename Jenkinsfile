@@ -16,7 +16,8 @@ pipeline {
 
         stage('Build Maven') {
             steps {
-                sh 'mvn clean package -DskipTests'
+                sh 'chmod +x mvnw'
+                sh './mvnw clean package -DskipTests'
             }
         }
 
@@ -51,6 +52,15 @@ pipeline {
                 sh 'docker-compose down'
                 sh 'docker-compose up -d'
             }
+        }
+    }
+
+    post {
+        success {
+            echo 'Déploiement WEB terminé avec succès.'
+        }
+        failure {
+            echo 'Erreur dans le pipeline WEB.'
         }
     }
 }

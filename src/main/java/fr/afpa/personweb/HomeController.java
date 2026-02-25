@@ -8,7 +8,7 @@ import org.springframework.web.client.RestTemplate;
 @Controller
 public class HomeController {
 
-    private final String API_URL = "http://personapi-container:8082/persons";
+    private final String API_URL = "http://personapi:8080/persons";
 
     @GetMapping("/")
     public String home(Model model) {
